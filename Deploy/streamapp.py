@@ -7,7 +7,7 @@ import chess
 from evals_calc import evaluate_performance
 
 # Load the trained model
-def load_model(model_path='/mount/src/chess-elo-predictor/Deploy/best_chess_model.pkl'):
+def load_model(model_path='../Deploy/best_chess_model.pkl'):
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
     return model
