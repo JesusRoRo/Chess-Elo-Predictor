@@ -7,7 +7,7 @@ import chess
 from evals_calc import evaluate_performance
 
 # Load the trained model
-def load_model(model_path='Deploy/best_chess_model.pkl'):
+def load_model(model_path):
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
     return model
@@ -138,7 +138,7 @@ def main():
             f.write(pgn_file.getbuffer())
 
         # Load the trained model (which includes the preprocessor)
-        model = load_model('best_chess_model.pkl')
+        model = load_model('Deploy/best_chess_model.pkl')
 
         # Parse the PGN file and extract features
         feature_vector, flattened_encoded_moves, moves = parse_pgn("temp_game.pgn")
