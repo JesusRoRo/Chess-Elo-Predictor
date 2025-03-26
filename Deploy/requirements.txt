@@ -2,5 +2,4 @@ streamlit
 pandas
 os
 pickle
-chess.pgn
 chess
