@@ -159,6 +159,12 @@ def main():
         # Initialize the board
         board = chess.Board()
 
+        # Reset session state when a new PGN file is uploaded
+        if "current_move" in st.session_state:
+            del st.session_state["current_move"]
+        if "board" in st.session_state:
+            del st.session_state["board"]
+        
         # Create session state variables to store game progress
         if "current_move" not in st.session_state:
             st.session_state.current_move = 0
