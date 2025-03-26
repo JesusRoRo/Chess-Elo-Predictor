@@ -2,3 +2,4 @@ streamlit
 pandas
 chess
 scikit-learn
+xgboost
