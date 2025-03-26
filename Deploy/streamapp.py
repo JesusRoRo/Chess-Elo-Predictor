@@ -133,6 +133,9 @@ def main():
 
     if pgn_file is not None:
         # Save the uploaded PGN file temporarily
+        for key in st.session_state.keys():
+            del st.session_state[key]
+        
         with open("temp_game.pgn", "wb") as f:
             f.write(pgn_file.getbuffer())
 
