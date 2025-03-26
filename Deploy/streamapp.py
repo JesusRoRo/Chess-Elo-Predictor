@@ -70,7 +70,7 @@ def predict_white_elo(model, feature_vector):
                     'BlackRatingDiff', 'ECO', 'Opening']
     df = pd.DataFrame([feature_vector], columns=column_names)
     
-    # Use the model (preprocessor is already fitted inside the pipeline)
+    # Use the model
     predicted_white_elo = model.predict(df)
     return predicted_white_elo[0]
 
@@ -89,7 +89,7 @@ def render_chessboard(board):
     for row in range(8):
         for col in range(8):
             # Use light brown for white squares and dark brown for black squares
-            square_color = '#D2B48C' if (row + col) % 2 == 0 else '#8B4513'  # Light brown and dark brown squares
+            square_color = '#D2B48C' if (row + col) % 2 == 0 else '#8B4513'
             
             piece = board.piece_at(8 * row + col)
             piece_html = ''
@@ -107,8 +107,7 @@ def render_chessboard(board):
 # Streamlit app
 def main():
     st.title("Chess Elo Prediction App")
-
-    # Set custom styling
+    
     st.markdown("""
     <style>
     body {
@@ -137,7 +136,7 @@ def main():
         with open("temp_game.pgn", "wb") as f:
             f.write(pgn_file.getbuffer())
 
-        # Load the trained model (which includes the preprocessor)
+        # Load the trained model
         model = load_model('Deploy/best_chess_model.pkl')
 
         # Parse the PGN file and extract features
@@ -182,6 +181,7 @@ def main():
                     st.session_state.current_move += 1
                     st.session_state.board = board  # Save the board state
                 else:
+                    #if no moves
                     st.warning("No more moves to show.")
 
         # Button to go back one move
@@ -193,6 +193,8 @@ def main():
                     board.pop()
                     st.session_state.board = board  # Save the board state
                 else:
+
+                    #if no moves
                     st.warning("No previous moves to show.")
 
         # Remove the temporary PGN file
